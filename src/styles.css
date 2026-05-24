@@ -252,6 +252,13 @@ h3 {
   gap: 16px;
 }
 
+.page-card {
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 250, 241, 0.8);
+  border: 1px solid rgba(31, 28, 23, 0.08);
+}
+
 .tool-meta {
   display: flex;
   justify-content: space-between;
@@ -322,6 +329,21 @@ h3 {
   margin-top: 20px;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.disclosure {
+  margin-top: 16px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.shell-guide {
+  padding-top: 24px;
+}
+
+.guide {
+  display: grid;
+  gap: 22px;
 }
 
 @media (max-width: 960px) {

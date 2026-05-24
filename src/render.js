@@ -42,6 +42,26 @@ const renderMonetization = (item) => `
   </article>
 `;
 
+const renderPageLink = (page) => `
+  <article class="page-card">
+    <h3>${escapeHtml(page.title)}</h3>
+    <p>${escapeHtml(page.summary)}</p>
+    <a class="text-link" href="./pages/${escapeHtml(page.slug)}/index.html">Read page</a>
+  </article>
+`;
+
+const renderGuideTool = (tool) => `
+  <article class="tool-card" data-tool-card="${escapeHtml(tool.name)}">
+    <div class="tool-meta">
+      <span class="pill">${escapeHtml(tool.category)}</span>
+      <span class="badge">${escapeHtml(tool.badge)}</span>
+    </div>
+    <h3>${escapeHtml(tool.name)}</h3>
+    <p>${escapeHtml(tool.description)}</p>
+    <a class="text-link" href="${escapeHtml(tool.href)}" target="_blank" rel="noreferrer">Open deal</a>
+  </article>
+`;
+
 export const renderLandingPage = (data) => `
   <section class="hero panel">
     <div class="hero-copy">
@@ -88,6 +108,16 @@ export const renderLandingPage = (data) => `
     </ul>
   </section>
 
+  <section class="featured">
+    <div class="section-heading">
+      <span>SEO Pages</span>
+      <h2>Three decision-stage pages ready for iteration</h2>
+    </div>
+    <div class="tool-grid">
+      ${data.pages.map(renderPageLink).join("")}
+    </div>
+  </section>
+
   <section class="monetization panel" id="monetization">
     <div class="section-heading">
       <span>Monetization</span>
@@ -104,13 +134,78 @@ export const renderLandingPage = (data) => `
       <h2>${escapeHtml(data.newsletter.title)}</h2>
     </div>
     <p>${escapeHtml(data.newsletter.description)}</p>
-    <form class="signup-form" data-newsletter-form>
+    <form
+      class="signup-form"
+      data-newsletter-form
+      action="${escapeHtml(data.newsletter.formAction)}"
+      method="${escapeHtml(data.newsletter.formMethod)}"
+      target="_blank"
+    >
       <label>
         <span>Email</span>
         <input type="email" name="email" placeholder="you@company.com" required />
       </label>
+      <input type="hidden" name="embed" value="1" />
       <button class="button button-primary" type="submit">${escapeHtml(data.newsletter.ctaLabel)}</button>
     </form>
-    <p class="form-note" data-form-note>Connect this form to Beehiiv, ConvertKit, or Buttondown to start collecting leads.</p>
+    <p class="form-note" data-form-note>${escapeHtml(data.newsletter.placeholderMessage)}</p>
+    <p class="disclosure">${escapeHtml(data.affiliateDisclosure)}</p>
   </section>
 `;
+
+export const renderGuidePage = (page, data) => {
+  const featuredTools = data.featuredStack.filter((tool) => page.featuredTools.includes(tool.name));
+
+  return `
+    <main class="shell shell-guide">
+      <header class="topbar">
+        <a class="brand" href="../../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>${escapeHtml(data.brand)}</span>
+        </a>
+        <nav>
+          <a href="../../index.html#featured-stack">Stack</a>
+          <a href="../../index.html#newsletter">Newsletter</a>
+        </nav>
+      </header>
+      <article class="guide">
+        <section class="panel">
+          <span class="eyebrow">Decision page</span>
+          <h1>${escapeHtml(page.title)}</h1>
+          <p class="lede">${escapeHtml(page.summary)}</p>
+          <p>${escapeHtml(page.intro)}</p>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <span>Key takeaways</span>
+            <h2>What this page should convert on</h2>
+          </div>
+          <ul class="template-list">
+            ${page.bullets.map(renderBullet).join("")}
+          </ul>
+        </section>
+
+        <section class="featured">
+          <div class="section-heading">
+            <span>Recommended stack</span>
+            <h2>Use these CTAs to monetize the page</h2>
+          </div>
+          <div class="tool-grid">
+            ${featuredTools.map(renderGuideTool).join("")}
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <span>Newsletter</span>
+            <h2>${escapeHtml(data.newsletter.title)}</h2>
+          </div>
+          <p>${escapeHtml(data.newsletter.description)}</p>
+          <a class="button button-primary" href="../../index.html#newsletter">${escapeHtml(data.newsletter.ctaLabel)}</a>
+          <p class="disclosure">${escapeHtml(data.affiliateDisclosure)}</p>
+        </section>
+      </article>
+    </main>
+  `;
+};

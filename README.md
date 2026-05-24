@@ -33,7 +33,7 @@ Then open `http://localhost:4173`.
 ## First monetization tasks
 
 1. Replace placeholder affiliate links in [src/site-data.js](/Users/mac/pspace/github/cloud/src/site-data.js).
-2. Connect the newsletter form in [src/app.js](/Users/mac/pspace/github/cloud/src/app.js) to Beehiiv, ConvertKit, or Buttondown.
+2. Replace `newsletter.formAction` in [src/site-data.js](/Users/mac/pspace/github/cloud/src/site-data.js) with your live Beehiiv, ConvertKit, or Buttondown form endpoint.
 3. Publish 3 supporting pages:
    - `best-ai-tools-for-founders`
    - `jasper-vs-chatgpt-for-landing-pages`

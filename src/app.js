@@ -12,10 +12,14 @@ const note = document.querySelector("[data-form-note]");
 
 if (form && note) {
   form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = new FormData(form).get("email");
+    const formAction = form.getAttribute("action") || "";
 
-    note.textContent = `Lead captured for ${email}. Replace this stub with your email platform endpoint before launch.`;
-    form.reset();
+    if (formAction.includes("your-publication-id")) {
+      event.preventDefault();
+      note.textContent = siteData.newsletter.placeholderMessage;
+      return;
+    }
+
+    note.textContent = siteData.newsletter.successMessage;
   });
 }
