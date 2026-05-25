@@ -44,3 +44,20 @@ Then open `http://localhost:4173`.
 - Add dedicated comparison pages per tool category.
 - Move the site data into a JSON or CMS source.
 - Add analytics and event tracking for outbound affiliate clicks.
+
+## Analytics
+
+- Configure analytics in [src/site-data.js](/Users/mac/pspace/github/cloud/src/site-data.js).
+- Supported values:
+  - `provider: "umami"` with `scriptUrl` and `websiteId`
+  - `provider: "ga4"` with `gaMeasurementId`
+- Tracked events:
+  - `affiliate_click`
+  - `newsletter_submit`
+  - `newsletter_blocked_placeholder`
+- If no provider is configured yet, recent events are stored in `localStorage` under `stackradar-events` for quick browser-side inspection.
+
+## SEO files
+
+- Sitemap: `/sitemap.xml`
+- Robots: `/robots.txt`

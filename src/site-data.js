@@ -1,5 +1,6 @@
 export const siteData = {
   brand: "StackRadar AI",
+  siteUrl: "https://ghv5.github.io/bussiness-web01",
   title: "Ship an AI stack in 60 minutes",
   subtitle:
     "A focused launchpad for founders who need the right AI tools, fast comparisons, and monetization-ready templates.",
@@ -88,6 +89,14 @@ export const siteData = {
       "Thanks. Your email platform should open or submit now. Replace the placeholder endpoint with your real Beehiiv, ConvertKit, or Buttondown form URL.",
     placeholderMessage:
       "Replace the newsletter formAction in src/site-data.js with your live email platform endpoint before driving traffic."
+  },
+  analytics: {
+    provider: "none",
+    scriptUrl: "",
+    websiteId: "",
+    gaMeasurementId: "",
+    note:
+      "Set analytics.provider to 'umami' or 'ga4' and fill the matching fields in src/site-data.js to enable page analytics."
   },
   affiliateDisclosure:
     "Affiliate disclosure: some links on this site may earn a commission if you sign up, at no extra cost to you.",

@@ -1,4 +1,4 @@
-import { renderGuidePage, renderGuidesIndexPage } from "./render.js";
+import { renderAnalyticsSnippet, renderGuidePage, renderGuidesIndexPage } from "./render.js";
 import { siteData } from "./site-data.js";
 
 const renderDocument = (page) => `<!doctype html>
@@ -16,8 +16,9 @@ const renderDocument = (page) => `<!doctype html>
     />
     <link rel="stylesheet" href="../../src/styles.css" />
   </head>
-  <body>
+  <body data-page="${page.slug}">
     ${renderGuidePage(page, siteData)}
+    ${renderAnalyticsSnippet(siteData, "../..")}
   </body>
 </html>
 `;
@@ -42,8 +43,29 @@ export const guidesIndexPage = `<!doctype html>
     />
     <link rel="stylesheet" href="../src/styles.css" />
   </head>
-  <body>
+  <body data-page="guides-hub">
     ${renderGuidesIndexPage(siteData)}
+    ${renderAnalyticsSnippet(siteData, "..")}
   </body>
 </html>
+`;
+
+const xmlUrlSet = [
+  `${siteData.siteUrl}/`,
+  `${siteData.siteUrl}/guides/`,
+  ...siteData.pages.map((page) => `${siteData.siteUrl}/pages/${page.slug}/`)
+]
+  .map((url) => `  <url><loc>${url}</loc></url>`)
+  .join("\n");
+
+export const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${xmlUrlSet}
+</urlset>
+`;
+
+export const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${siteData.siteUrl}/sitemap.xml
 `;

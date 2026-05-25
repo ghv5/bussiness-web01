@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
+import { guidesIndexPage, robotsTxt, sitemapXml } from "../src/page-template.js";
 import { siteData } from "../src/site-data.js";
 import { renderGuidePage, renderGuidesIndexPage, renderLandingPage } from "../src/render.js";
 
@@ -12,6 +13,7 @@ test("renders hero, tool cards, monetization links, and newsletter action", () =
   assert.match(html, /Guides Hub/i);
   assert.match(html, /newsletter/i);
   assert.equal((html.match(/data-tool-card=/g) || []).length, 3);
+  assert.match(html, /data-track="affiliate-click"/i);
   assert.match(html, /ref=stackradar/i);
   assert.match(html, /action="https:\/\/buttondown\.email\/api\/emails\/embed-subscribe\/your-publication-id"/i);
   assert.match(html, /best-ai-tools-for-founders\/index\.html/i);
@@ -34,4 +36,11 @@ test("renders a guides index page with category sections", () => {
   assert.match(html, /Comparisons/i);
   assert.match(html, /Launch Playbooks/i);
   assert.match(html, /best-ai-tools-for-marketing-teams\/index\.html/i);
+});
+
+test("generates guides hub, sitemap, and robots metadata", () => {
+  assert.match(guidesIndexPage, /All Conversion Guides/i);
+  assert.match(sitemapXml, /https:\/\/ghv5\.github\.io\/bussiness-web01\/guides\//i);
+  assert.match(sitemapXml, /https:\/\/ghv5\.github\.io\/bussiness-web01\/pages\/best-ai-tools-for-founders\//i);
+  assert.match(robotsTxt, /Sitemap: https:\/\/ghv5\.github\.io\/bussiness-web01\/sitemap\.xml/i);
 });

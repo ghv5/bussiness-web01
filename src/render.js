@@ -21,7 +21,14 @@ const renderCard = (tool) => `
     </div>
     <h3>${escapeHtml(tool.name)}</h3>
     <p>${escapeHtml(tool.description)}</p>
-    <a class="text-link" href="${escapeHtml(tool.href)}" target="_blank" rel="noreferrer">Open deal</a>
+    <a
+      class="text-link"
+      href="${escapeHtml(tool.href)}"
+      target="_blank"
+      rel="noreferrer"
+      data-track="affiliate-click"
+      data-tool="${escapeHtml(tool.name)}"
+    >Open deal</a>
   </article>
 `;
 
@@ -59,7 +66,14 @@ const renderGuideTool = (tool) => `
     </div>
     <h3>${escapeHtml(tool.name)}</h3>
     <p>${escapeHtml(tool.description)}</p>
-    <a class="text-link" href="${escapeHtml(tool.href)}" target="_blank" rel="noreferrer">Open deal</a>
+    <a
+      class="text-link"
+      href="${escapeHtml(tool.href)}"
+      target="_blank"
+      rel="noreferrer"
+      data-track="affiliate-click"
+      data-tool="${escapeHtml(tool.name)}"
+    >Open deal</a>
   </article>
 `;
 
@@ -209,6 +223,36 @@ export const renderGuidesIndexPage = (data) => {
         ${groupedPages.map(renderGuideIndexSection).join("")}
       </article>
     </main>
+  `;
+};
+
+export const renderAnalyticsSnippet = (data, assetPathPrefix = ".") => {
+  if (data.analytics.provider === "umami" && data.analytics.scriptUrl && data.analytics.websiteId) {
+    return `
+    <script
+      defer
+      src="${escapeHtml(data.analytics.scriptUrl)}"
+      data-website-id="${escapeHtml(data.analytics.websiteId)}"
+    ></script>
+    <script type="module" src="${escapeHtml(assetPathPrefix)}/src/app.js"></script>
+    `;
+  }
+
+  if (data.analytics.provider === "ga4" && data.analytics.gaMeasurementId) {
+    return `
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${escapeHtml(data.analytics.gaMeasurementId)}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${escapeHtml(data.analytics.gaMeasurementId)}');
+    </script>
+    <script type="module" src="${escapeHtml(assetPathPrefix)}/src/app.js"></script>
+    `;
+  }
+
+  return `
+    <script type="module" src="${escapeHtml(assetPathPrefix)}/src/app.js"></script>
   `;
 };
 
