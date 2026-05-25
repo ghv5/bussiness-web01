@@ -44,6 +44,7 @@ const renderMonetization = (item) => `
 
 const renderPageLink = (page) => `
   <article class="page-card">
+    <span class="pill">${escapeHtml(page.category)}</span>
     <h3>${escapeHtml(page.title)}</h3>
     <p>${escapeHtml(page.summary)}</p>
     <a class="text-link" href="./pages/${escapeHtml(page.slug)}/index.html">Read page</a>
@@ -60,6 +61,33 @@ const renderGuideTool = (tool) => `
     <p>${escapeHtml(tool.description)}</p>
     <a class="text-link" href="${escapeHtml(tool.href)}" target="_blank" rel="noreferrer">Open deal</a>
   </article>
+`;
+
+const groupPagesByCategory = (pages) =>
+  pages.reduce((groups, page) => {
+    const nextGroups = { ...groups };
+    const existing = nextGroups[page.category] || [];
+
+    nextGroups[page.category] = [...existing, page];
+    return nextGroups;
+  }, {});
+
+const renderGuideIndexSection = ([category, pages]) => `
+  <section class="panel">
+    <div class="section-heading">
+      <span>${escapeHtml(category)}</span>
+      <h2>${escapeHtml(category)}</h2>
+    </div>
+    <div class="tool-grid">
+      ${pages.map((page) => `
+        <article class="page-card">
+          <h3>${escapeHtml(page.title)}</h3>
+          <p>${escapeHtml(page.summary)}</p>
+          <a class="text-link" href="../pages/${escapeHtml(page.slug)}/index.html">Read page</a>
+        </article>
+      `).join("")}
+    </div>
+  </section>
 `;
 
 export const renderLandingPage = (data) => `
@@ -111,10 +139,13 @@ export const renderLandingPage = (data) => `
   <section class="featured">
     <div class="section-heading">
       <span>SEO Pages</span>
-      <h2>Three decision-stage pages ready for iteration</h2>
+      <h2>Decision-stage pages ready for ranking and clicks</h2>
     </div>
     <div class="tool-grid">
       ${data.pages.map(renderPageLink).join("")}
+    </div>
+    <div class="hero-actions">
+      <a class="button button-secondary" href="./guides/index.html">Open Guides Hub</a>
     </div>
   </section>
 
@@ -152,6 +183,34 @@ export const renderLandingPage = (data) => `
     <p class="disclosure">${escapeHtml(data.affiliateDisclosure)}</p>
   </section>
 `;
+
+export const renderGuidesIndexPage = (data) => {
+  const groupedPages = Object.entries(groupPagesByCategory(data.pages));
+
+  return `
+    <main class="shell shell-guide">
+      <header class="topbar">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>${escapeHtml(data.brand)}</span>
+        </a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../index.html#newsletter">Newsletter</a>
+        </nav>
+      </header>
+      <article class="guide">
+        <section class="panel">
+          <span class="eyebrow">Guides Hub</span>
+          <h1>${escapeHtml(data.guidesHub.title)}</h1>
+          <p class="lede">${escapeHtml(data.guidesHub.summary)}</p>
+          <p class="disclosure">${escapeHtml(data.affiliateDisclosure)}</p>
+        </section>
+        ${groupedPages.map(renderGuideIndexSection).join("")}
+      </article>
+    </main>
+  `;
+};
 
 export const renderGuidePage = (page, data) => {
   const featuredTools = data.featuredStack.filter((tool) => page.featuredTools.includes(tool.name));

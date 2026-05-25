@@ -1,6 +1,6 @@
 import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 
-import { guidePages } from "../src/page-template.js";
+import { guidePages, guidesIndexPage } from "../src/page-template.js";
 
 await rm(new URL("../dist", import.meta.url), { recursive: true, force: true });
 await mkdir(new URL("../dist/src", import.meta.url), { recursive: true });
@@ -16,3 +16,6 @@ for (const page of guidePages) {
   await mkdir(pageDirectory, { recursive: true });
   await writeFile(new URL("index.html", pageDirectory), page.html);
 }
+
+await mkdir(new URL("../dist/guides/", import.meta.url), { recursive: true });
+await writeFile(new URL("../dist/guides/index.html", import.meta.url), guidesIndexPage);

@@ -91,9 +91,15 @@ export const siteData = {
   },
   affiliateDisclosure:
     "Affiliate disclosure: some links on this site may earn a commission if you sign up, at no extra cost to you.",
+  guidesHub: {
+    title: "All Conversion Guides",
+    summary:
+      "A compact library of high-intent pages designed to rank for buyer and builder searches, then route visitors into affiliate offers and newsletter capture."
+  },
   pages: [
     {
       slug: "best-ai-tools-for-founders",
+      category: "Best of",
       title: "Best AI Tools for Founders",
       summary:
         "A shortlist for founders who need a site builder, content engine, and newsletter stack without wasting a week evaluating tools.",
@@ -108,6 +114,7 @@ export const siteData = {
     },
     {
       slug: "jasper-vs-chatgpt-for-landing-pages",
+      category: "Comparisons",
       title: "Jasper vs ChatGPT for Landing Pages",
       summary:
         "A conversion-focused comparison page for founders deciding whether they need workflow software or a general-purpose AI assistant.",
@@ -122,6 +129,7 @@ export const siteData = {
     },
     {
       slug: "launch-an-ai-affiliate-site-in-a-weekend",
+      category: "Launch Playbooks",
       title: "How to Launch an AI Affiliate Site in a Weekend",
       summary:
         "A tactical weekend plan for publishing a first affiliate site, collecting emails, and validating outbound clicks.",
@@ -133,6 +141,111 @@ export const siteData = {
         "Iterate only after one real traffic source starts converting."
       ],
       featuredTools: ["Framer", "Beehiiv"]
+    },
+    {
+      slug: "best-ai-tools-for-marketing-teams",
+      category: "Best of",
+      title: "Best AI Tools for Marketing Teams",
+      summary:
+        "A buyer-intent shortlist for small marketing teams choosing tools for landing pages, campaign copy, and subscriber capture.",
+      intro:
+        "Marketing-team pages convert well when they map tools directly to outputs: campaign pages, outbound copy, and audience retention. This page is built for that search intent.",
+      bullets: [
+        "Use Jasper for faster campaign copy production and reuse.",
+        "Use Framer when launch speed and polished pages matter.",
+        "Use Beehiiv when owned audience and sponsor potential matter."
+      ],
+      featuredTools: ["Jasper", "Framer", "Beehiiv"]
+    },
+    {
+      slug: "best-ai-tools-for-solo-founders",
+      category: "Best of",
+      title: "Best AI Tools for Solo Founders",
+      summary:
+        "A lightweight stack for solo operators who need the shortest route from idea to public site and first email subscribers.",
+      intro:
+        "Solo-founder traffic often converts on simplicity, not feature depth. This page narrows decisions to the few tools that actually reduce launch friction.",
+      bullets: [
+        "Framer removes design overhead for a fast public-facing site.",
+        "Jasper helps when shipping repetitive content is the bottleneck.",
+        "Beehiiv keeps the audience asset separate from social platforms."
+      ],
+      featuredTools: ["Framer", "Jasper", "Beehiiv"]
+    },
+    {
+      slug: "framer-vs-webflow-for-ai-landing-pages",
+      category: "Comparisons",
+      title: "Framer vs Webflow for AI Landing Pages",
+      summary:
+        "A decision-stage page for founders weighing speed, polish, and CMS flexibility before launching an AI niche site.",
+      intro:
+        "This is a strong affiliate format because the searcher is already deciding between tools. The job of the page is to reduce ambiguity and route to one paid option.",
+      bullets: [
+        "Choose Framer if your goal is faster launch with less setup.",
+        "Choose Webflow if content modeling and CMS flexibility dominate.",
+        "For an MVP affiliate site, Framer usually wins on execution speed."
+      ],
+      featuredTools: ["Framer"]
+    },
+    {
+      slug: "beehiiv-vs-substack-for-monetization",
+      category: "Comparisons",
+      title: "Beehiiv vs Substack for Monetization",
+      summary:
+        "A monetization-led comparison for creators deciding whether they want better growth tooling or a simpler writing-first experience.",
+      intro:
+        "Newsletter searches convert well because users are often ready to migrate or start. The page should frame the choice around monetization and ownership.",
+      bullets: [
+        "Choose Beehiiv for growth loops, segmentation, and sponsor tooling.",
+        "Choose Substack for the simplest writing and publishing workflow.",
+        "If monetization is the priority, Beehiiv is usually the stronger CTA."
+      ],
+      featuredTools: ["Beehiiv"]
+    },
+    {
+      slug: "ai-newsletter-launch-checklist",
+      category: "Launch Playbooks",
+      title: "AI Newsletter Launch Checklist",
+      summary:
+        "A practical checklist page that turns newsletter-curious visitors into subscribers and future software referrals.",
+      intro:
+        "Checklist pages work as lead magnets and search pages at the same time. This one should convert both direct traffic and beginner-intent SEO searches.",
+      bullets: [
+        "Define one niche promise and one weekly format before sending issue one.",
+        "Capture subscribers on the homepage before writing a deep archive.",
+        "Use software recommendations inside onboarding and issue templates."
+      ],
+      featuredTools: ["Beehiiv", "Jasper"]
+    },
+    {
+      slug: "ai-saas-affiliate-site-playbook",
+      category: "Launch Playbooks",
+      title: "AI SaaS Affiliate Site Playbook",
+      summary:
+        "A higher-intent playbook for building an affiliate site around AI SaaS tools instead of low-value display ad traffic.",
+      intro:
+        "This page is meant to attract builders who already understand SEO basics and want a more commercial site model. It should feed directly into your stack and newsletter.",
+      bullets: [
+        "Start with commercial-intent pages, not generic news content.",
+        "Track outbound clicks before scaling article count.",
+        "Tie each article to one clear monetization path."
+      ],
+      featuredTools: ["Jasper", "Framer", "Beehiiv"]
+    },
+    {
+      slug: "best-ai-tools-for-content-agencies",
+      category: "Best of",
+      title: "Best AI Tools for Content Agencies",
+      summary:
+        "A B2B-leaning shortlist aimed at agencies that need repeatable landing page production, copy systems, and owned audience channels.",
+      intro:
+        "Agency-intent terms are valuable because buyers often control larger budgets. The page should present tools as systems for repeatable client output.",
+      bullets: [
+        "Jasper is strongest when agencies need repeatable briefs and brand controls.",
+        "Framer helps agencies ship fast client-facing pages with less engineering.",
+        "Beehiiv can package audience growth into a retainer-friendly offer."
+      ],
+      featuredTools: ["Jasper", "Framer", "Beehiiv"]
     }
   ]
 };
